@@ -53,7 +53,7 @@ const Header = () => {
                                         }} style={{ textDecoration: "none", color: "gray", marginLeft: "20px" }} to="/dashboard">
                                             Dashboard
                                         </NavLink>
-                                        <img style={{ width: "40px", height: "40px", borderRadius: "50%", margin: "0 10px" }} src={user?.photoURL} alt="" />
+                                        <img style={{ width: "40px", height: "40px", borderRadius: "50%", margin: "0 20px" }} src={user?.photoURL} alt="" />
                                         <button onClick={handleLogOut} className="btn btn-sm btn-dark">Logout</button>
                                     </div>
                                     :

@@ -7,6 +7,7 @@ import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Events from './components/Events/Events';
 import Dashboard from './components/Dashboard/Dashboard';
+import AddEvent from './components/AddEvent/AddEvent';
 
 function App() {
   return (
@@ -25,6 +26,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
+          </PrivateRoute>
+          <PrivateRoute path="/add-event">
+            <AddEvent></AddEvent>
           </PrivateRoute>
         </Switch>
       </Router>

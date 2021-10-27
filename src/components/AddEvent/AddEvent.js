@@ -1,43 +1,47 @@
 import React, { useEffect } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import logo from '../../images/logo.png';
 import registerIcon from '../../images/register-icon.png';
 import addIcon from '../../images/plus 1.png'
 import { NavLink } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import './AddEvent.css';
 const Dashboard = () => {
     useEffect(() => {
         AOS.init();
     }, []);
+    const handleAddEvent = (e) => {
+
+        e.preventDefault();
+    }
     return (
         <Container>
             <div className="row bg-light my-5">
                 <div className="col-md-9" data-aos="fade-left" data-aos-delay="300">
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Registing Date</th>
-                                <th>Volunteer List</th>
-                                <th className="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Palash Talukder</td>
-                                <td>palash@gmail.com</td>
-                                <td>12-2-3221</td>
-                                <td>Lorem Ipsum</td>
-                                <td className="text-center">
-                                    <i className="fas fa-trash-alt"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                    <div className="add-event-form">
+                        <h3 className="text-center mb-3">Add Event</h3>
+                        <form onSubmit={handleAddEvent}>
+                            <div className="row">
+                                <div className="col-md-6 mb-2">
+                                    <input className="form-control" type="text" placeholder="Enter Title" />
+                                </div>
+                                <div className="col-md-6 mb-2">
+                                    <input className="form-control" type="date" name="" id="" />
+                                </div>
+                                <div className="col-md-6 mb-2">
+                                    <textarea className="form-control" name="" id="" cols="30" rows="2" placeholder="Event Details"></textarea>
+                                </div>
+                                <div className="col-md-6 mb-2">
+                                    <input className="form-control" type="text" placeholder="Banner URL" />
+                                </div>
+                            </div>
+                            <div className="text-end">
+                                <button type="submit" className="btn btn-primary">Add event</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
 
                 <div className="col-md-3 py-3 bg-white" data-aos="fade-right" data-aos-delay="300">
                     <div className="text-center">

@@ -14,7 +14,7 @@ const Login = () => {
     const { setIsloading } = allFirebase;
     const location = useLocation();
     const history = useHistory();
-    const redirect_uri = location?.state.from || '/home';
+    const redirect_uri = location.state?.from || '/home';
     const handleGoogleLogin = () => {
         setIsloading(true);
         const googleprovider = new GoogleAuthProvider();
