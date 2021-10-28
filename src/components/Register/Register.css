@@ -1,0 +1,19 @@
+.register{
+    border: 1px solid rgb(238, 232, 232);
+    padding: 30px ;
+    border-radius: 0px;
+    box-shadow: 5px 5px 5px 5px rgb(245, 241, 241);
+    border-radius: 20px;
+}
+.register input{
+    width: 90%;
+    padding: 8px 13px;
+    border-radius: 10px;
+    margin: 6px 0;
+    border: 1px solid rgb(224, 214, 214);
+    
+}   
+
+.register input:hover{
+    box-shadow: 5px 5px 5px 5px rgb(245, 241, 241);
+}

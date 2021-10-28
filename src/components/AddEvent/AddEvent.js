@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Container } from 'react-bootstrap';
 import logo from '../../images/logo.png';
 import registerIcon from '../../images/register-icon.png';
@@ -7,14 +7,37 @@ import { NavLink } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import './AddEvent.css';
+import swal from 'sweetalert';
 const Dashboard = () => {
+    const titleRef = useRef();
+    const dateRef = useRef();
+    const photoRef = useRef();
+
+    const handleAddEvent = (e) => {
+        const title = titleRef.current.value;
+        const date = dateRef.current.value;
+        const photo = photoRef.current.value;
+        const newEvent = { title: title, date: date, photo: photo };
+
+        fetch('http://localhost:5000/events', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newEvent)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    e.target.reset();
+                    swal("Good job!", "Event add Successfully!", "success");
+                }
+            })
+        e.preventDefault();
+    }
     useEffect(() => {
         AOS.init();
     }, []);
-    const handleAddEvent = (e) => {
-
-        e.preventDefault();
-    }
     return (
         <Container>
             <div className="row bg-light my-5">
@@ -24,16 +47,13 @@ const Dashboard = () => {
                         <form onSubmit={handleAddEvent}>
                             <div className="row">
                                 <div className="col-md-6 mb-2">
-                                    <input className="form-control" type="text" placeholder="Enter Title" />
+                                    <input ref={titleRef} className="form-control" type="text" placeholder="Enter Title" />
                                 </div>
                                 <div className="col-md-6 mb-2">
-                                    <input className="form-control" type="date" name="" id="" />
+                                    <input ref={dateRef} className="form-control" type="date" name="" id="" />
                                 </div>
-                                <div className="col-md-6 mb-2">
-                                    <textarea className="form-control" name="" id="" cols="30" rows="2" placeholder="Event Details"></textarea>
-                                </div>
-                                <div className="col-md-6 mb-2">
-                                    <input className="form-control" type="text" placeholder="Banner URL" />
+                                <div className="col-md-12 mb-2">
+                                    <input ref={photoRef} className="form-control" type="text" placeholder="Banner URL" />
                                 </div>
                             </div>
                             <div className="text-end">

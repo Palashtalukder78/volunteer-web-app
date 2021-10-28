@@ -5,9 +5,9 @@ import Home from './components/Home/Home/Home';
 import Login from './components/Login/Login';
 import AuthProvider from './contexts/AuthProvider';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import Events from './components/Events/Events';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddEvent from './components/AddEvent/AddEvent';
+import Register from './components/Register/Register';
 
 function App() {
   return (
@@ -18,12 +18,15 @@ function App() {
           <Route exact path="/">
             <Home></Home>
           </Route>
+          <Route path="/home">
+            <Home></Home>
+          </Route>
           <Route path="/login">
             <Login></Login>
           </Route>
-          <PrivateRoute path="/events">
-            <Events></Events>
-          </PrivateRoute>
+          <Route path="/events/:id">
+            <Register></Register>
+          </Route>
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
           </PrivateRoute>

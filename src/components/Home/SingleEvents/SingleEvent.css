@@ -1,0 +1,13 @@
+.singleEvent{
+    cursor: pointer;
+}
+.event-title{
+    background-color: brown;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.event-photo img{
+    border-radius: 8px 8px 0 0;
+}
