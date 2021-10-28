@@ -38,13 +38,8 @@ const Header = () => {
                                 </NavLink>
                                 <NavLink activeStyle={{
                                     fontWeight: "bold"
-                                }} style={{ textDecoration: "none", color: "gray", marginLeft: "20px" }} to="/about">
-                                    About
-                                </NavLink>
-                                <NavLink activeStyle={{
-                                    fontWeight: "bold"
-                                }} style={{ textDecoration: "none", color: "gray", marginLeft: "20px" }} to="/events">
-                                    Events
+                                }} style={{ textDecoration: "none", color: "gray", marginLeft: "20px" }} to="/my-event">
+                                    My Events
                                 </NavLink>
                                 {user?.displayName ?
                                     <div>
@@ -60,9 +55,6 @@ const Header = () => {
                                     <div>
                                         <NavLink to="/login" style={{ marginLeft: "20px" }}>
                                             <button className="btn btn-sm btn-primary">Login</button>
-                                        </NavLink>
-                                        <NavLink to="/admin" style={{ marginLeft: "10px" }}>
-                                            <button className="btn btn-sm btn-dark">Admin</button>
                                         </NavLink>
                                     </div>
                                 }

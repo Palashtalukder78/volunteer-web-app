@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import useAuth from '../../hooks/useAuth';
-import './Register.css'
+import './Register.css';
+import swal from 'sweetalert';
 const Register = () => {
     const { id } = useParams();
     const [event, setEvent] = useState([]);
-    const url = `http://localhost:5000/events/${id}`;
+    const history = useHistory();
+    const url = `https://radiant-earth-66783.herokuapp.com/events/${id}`;
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -25,11 +27,23 @@ const Register = () => {
         const email = emailRef.current.value;
         const title = titleRef.current.value;
         const date = dateRef.current.value;
-
-        const registeredUser = { name: name, email: email, title: title, date: date }
-
+        const registeredUser = { name: name, email: email, title: title, date: date };
         console.log(registeredUser);
-
+        fetch('https://radiant-earth-66783.herokuapp.com/registered', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(registeredUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    e.target.reset();
+                    history.push('/my-event')
+                    swal("Good job!", "Register Successfully!", "success");
+                }
+            })
         e.preventDefault();
     }
     return (
@@ -39,9 +53,9 @@ const Register = () => {
                     <div className="col-md-5 register mx-auto text-center">
                         <h2>Register</h2>
                         <div>
-                            <form onClick={handleRegister}>
-                                <input ref={nameRef} type="text" defaultValue={user.displayName} />
-                                <input ref={emailRef} type="text" defaultValue={user?.email} placeholder="Enter Your email" />
+                            <form onSubmit={handleRegister}>
+                                <input ref={nameRef} type="text" defaultValue={user.displayName} disabled />
+                                <input ref={emailRef} defaultValue={user?.email} type="email" placeholder="Enter Your email" required />
                                 <input ref={titleRef} type="text" defaultValue={event.title} disabled />
                                 <input ref={dateRef} type="text" defaultValue={event.date} disabled />
                                 <div>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import Spinner from 'react-bootstrap/esm/Spinner';
 import SingleEvents from '../SingleEvents/SingleEvents';
-import './EventsContainer.css'
+import './EventsContainer.css';
 const Events = () => {
     const [events, setEvents] = useState([]);
     const [searchedEvent, setSearchEvent] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/events')
+        fetch('https://radiant-earth-66783.herokuapp.com/events')
             .then(res => res.json())
             .then(data => {
                 setEvents(data)
@@ -20,27 +21,35 @@ const Events = () => {
         setSearchEvent(searchResult)
     }
 
-
-
     return (
-        <div className="container events-container pt-5">
-            <div className="row">
-                <div className="col-md-5 mx-auto">
-                    <div className="text-center">
-                        <input onChange={handleSearch} className="search shadow" style={{ width: "100%" }} type="text" placeholder="Search Event" />
+        <>
+            <div className="container events-container pt-5">
+                <div className="row">
+                    <div className="col-md-5 mx-auto">
+                        <div className="text-center">
+                            <input onChange={handleSearch} className="search shadow" style={{ width: "100%" }} type="text" placeholder="Search Event" />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <h2 className="text-center my-4">Events</h2>
-            <div className="row my-3">
-                {
-                    searchedEvent.map(event => <SingleEvents
-                        key={event._id}
-                        event={event}
-                    ></SingleEvents>)
+                {!events ?
+                    <div>
+                        <Spinner animation="border" variant="primary" />
+                    </div>
+                    :
+                    <div>
+                        <h2 className="text-center my-4">Events</h2>
+                        <div className="row my-3">
+                            {
+                                searchedEvent.map(event => <SingleEvents
+                                    key={event._id}
+                                    event={event}
+                                ></SingleEvents>)
+                            }
+                        </div>
+                    </div>
                 }
             </div>
-        </div>
+        </>
     );
 };
 

@@ -8,6 +8,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import Dashboard from './components/Dashboard/Dashboard';
 import AddEvent from './components/AddEvent/AddEvent';
 import Register from './components/Register/Register';
+import MyEvent from './components/MyEvent/MyEvent';
 
 function App() {
   return (
@@ -24,11 +25,14 @@ function App() {
           <Route path="/login">
             <Login></Login>
           </Route>
-          <Route path="/events/:id">
+          <PrivateRoute path="/events/:id">
             <Register></Register>
-          </Route>
+          </PrivateRoute>
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
+          </PrivateRoute>
+          <PrivateRoute path="/my-event">
+            <MyEvent></MyEvent>
           </PrivateRoute>
           <PrivateRoute path="/add-event">
             <AddEvent></AddEvent>

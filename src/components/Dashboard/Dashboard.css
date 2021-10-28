@@ -1,0 +1,6 @@
+.delete-register-user{
+    cursor: pointer;
+}
+.delete-register-user i:hover{
+    color: blue;
+}
